@@ -94,6 +94,7 @@ resource "aws_eks_cluster" "main" {
 
   tags = {
     Name = var.cluster_name
+    "alpha.eksctl.io/cluster-oidc-enabled" = "true"
   }
 }
 

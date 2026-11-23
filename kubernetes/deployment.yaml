@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ai-platform-app
-          image: 491377098012.dkr.ecr.ap-southeast-2.amazonaws.com/ai-platform-app:483f8b1
+          image: 491377098012.dkr.ecr.ap-southeast-2.amazonaws.com/ai-platform-app:a8b3f108479de8d6ebf2f4ed734d1774b656cdcc
           ports:
             - containerPort: 8000
           readinessProbe:

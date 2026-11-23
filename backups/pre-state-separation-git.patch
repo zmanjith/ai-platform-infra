@@ -1,0 +1,25 @@
+diff --git a/.gitignore b/.gitignore
+index 361dc1e..0de1cd7 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -5,6 +5,7 @@
+ crash.log
+ *.tfvars
+ !terraform.tfvars.example
++terraform.tfstate.backup
+ 
+ .env
+ .venv
+diff --git a/modules/ecr/main.tf b/modules/ecr/main.tf
+index 4fcef78..b5f41d3 100644
+--- a/modules/ecr/main.tf
++++ b/modules/ecr/main.tf
+@@ -2,7 +2,7 @@
+ resource "aws_ecr_repository" "app" {
+   name                 = "${var.project_name}-app"
+   image_tag_mutability = "IMMUTABLE"
+-  force_delete         = true
++  force_delete         = false
+   image_scanning_configuration {
+     scan_on_push = true
+   }
