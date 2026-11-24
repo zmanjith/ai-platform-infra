@@ -1,13 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: ai-platform-app
   namespace: ai-platform-staging
 spec:
-  replicas: 1
+  replicas: 4
+
   selector:
     matchLabels:
       app: ai-platform-app
+
   template:
     metadata:
       labels:
@@ -37,3 +39,14 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
+
+  strategy:
+    canary:
+      steps:
+        - setWeight: 25
+        - pause:
+            duration: 30s
+        - setWeight: 50
+        - pause:
+            duration: 30s
+        - setWeight: 100
